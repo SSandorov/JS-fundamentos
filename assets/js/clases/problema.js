@@ -45,8 +45,12 @@ conocerlo por si necesitamos compatibilidad con navegadores muy antiguos
 
 El mayor inconveniente de este parche, es que necesitas la palabra new para ejecutar el 
 código, y no todos lo saben, se podría crear un warning para avisar en caso de que alguien
-se olvide, pero sólo se recomiendo utilizar esta forma para mantener la compatibilidad
-en antiguos navegadores, todos los modernos ya pueden utilizar el código tradicional de clases
+se olvide, pero sólo se recomienda utilizar esta forma para mantener la compatibilidad
+en antiguos navegadores, todos los modernos ya pueden utilizar el código tradicional de clases.
+También es importante saber que, para heredar valores de un generador de instancias a otro,
+deberíamos emplear el __proto__ y esto no es tan sencillo de manejar
 
-De todas maneras, con esta estructura no puedo crear clases estáticas ni variables privadas
+De todas maneras, con esta estructura no puedo crear clases estáticas ni variables privadas de 
+manera simple
+
 */
