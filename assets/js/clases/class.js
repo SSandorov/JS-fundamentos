@@ -12,8 +12,34 @@ Algunas personas se acostumbran a escribir las propiedades privadas al final de 
 
 class Persona {
     // Todas las clases tienen por defecto el 'use strict';
-    // Se debe tener en cuenta que no son lo mismo que una variable, por lo que no 
-    // podríamos escribir
+
+    /*
+    Las propiedades y métodos estáticos nos permiten utilizar dichos métodos y propiedades
+    sin necesidad de instanciar la clase
+    se incializan con la palabra reservada static
+    como ejemplo crearemos un contador de todas las instancias creadas de la clase
+    */
+    static conteo = 0;
+    // podemos crear un get estático también
+    static get getConteo() {
+        return Persona.conteo + ' héroes';
+    }
+    // o un método tradicional
+    static mensaje() {
+        console.log('Hola a todos, soy un método estático');
+        /*
+        Es imporante tener en cuenta que no podemos referenciar las propiedades dinámicas
+        en los métodos estáticos, ya que estos sólo contemplan sus homólogos estáticos
+        console.log(this.nombre); nos devuelve undefined
+        */
+    }
+    /*
+    Es imporante tener en cuenta que no podemos referenciar las propiedades dinámicas
+    en los métodos estáticos, ya que estos sólo contemplan sus homólogos estáticos
+    */
+
+    // Se debe tener en cuenta que las propiedades no son lo mismo que una variable, 
+    // por lo que no podríamos escribir:
     /*
     nombre = '',
     codigo = '',
@@ -36,6 +62,12 @@ class Persona {
         this.codigo = codigo;
         this.frase = frase;
         // return undefined; --> aunque pongamos esto, no nos lo devuelve
+
+        // como la propiedad estática cuenta el número de instancias creadas, podemos
+        // llamarla aquí. Para llamar a un propiedad estática debemos poner el nombre de
+        // la clase antes, no el this.conteo, ya que al una propiedad estática no entra en
+        // el constructor y se debe llamar a la clase directamente
+        Persona.conteo++;
     }
 
     // Set y Get
@@ -97,6 +129,20 @@ spiderman.setComidaFavorita = 'El pastel de cereza de la tía May';
 console.log(spiderman.getComidaFavorita);
 console.log(spiderman);
 
+// Mostramos en consola la propiedad estática
+console.log('Número de héroes: ', Persona.conteo);
+// Mostramos en consola el get estático
+console.log(Persona.getConteo);
+// Llamamos al método estático
+Persona.mensaje();
+// Como vemos las propiedades y métodos estáticos se llaman directamente desde la clase
+/*
+Al igual que el conveniente de poder crear una propiedad fuera de la clase, también se
+puede crear una propiedad estática fuera de la clase de la siguiente manera
+Persona.propiedadExterna = '';
+al igual que los inconvenientes que se presentan en los siguientes párrafos, estos sólo
+suceden en JS, no en otros lenguajes
+*/
 
 /*
 Uno de los grandes inconvenientes de JS es que podemos crear una propiedad de la
